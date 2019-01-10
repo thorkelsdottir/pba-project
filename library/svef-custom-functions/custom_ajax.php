@@ -29,7 +29,7 @@ add_action('wp_ajax_ajax_scrape_rss', 'ajax_scrape_rss');
 function ajax_scrape_rss(){
 	try {
 		// we call our function defined in library/svef-custom-functions/custom-scraper.php
-		$tvinna = parseRssToJson ('https://tvinna.is/feed');
+		$tvinna = parseRssToJson('https://tvinna.is/feed');
 		print $tvinna;
 		exit;
 	} catch (Exception $err ) {
@@ -95,16 +95,18 @@ function get_next_page(){
 }
 
 
-add_action('wp_ajax_nopriv_set_darkmode', 'set_darkmode'); // make shure you dont have to be logged in to the backend to access this.
-add_action('wp_ajax_set_darkmode', 'set_darkmode');
-function set_darkmode(){
-	try {
-		$_SESSION['isDark'] = $_POST['isDark'];
-		echo  $_POST['isDark'] == 'true' ? '{"success": "session is dark"}' : '{"success": "session is light"}' ;
-		exit;
-	} catch (Exception $err ) {
-		echo json_encode($err, true);
-	}
+
+add_action('wp_ajax_nopriv_submitPostlist', 'submitPostlist'); // make sure you dont have to be logged in to the backend to access this.
+add_action('wp_ajax_submitPostlist', 'submitPostlist');
+function submitPostlist(){
+
+	$input_values['input_2'] = $_POST['email'];
+	$form_id = (int)$_POST['formId'];
+	$result = GFAPI::submit_form( $form_id, $input_values );
+	$j_result = json_encode($result, true);
+	echo $j_result;
+
+	exit;
 }
 
 ?>

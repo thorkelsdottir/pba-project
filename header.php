@@ -1,7 +1,5 @@
 <?php
- if(!session_id()) {
-	session_start();
-}
+
 /**
  * The template for displaying the header
  *
@@ -11,7 +9,7 @@
  * @since FoundationPress 1.0.0
  */
 
-	$dark_mode = isset($_SESSION['isDark']) && $_SESSION['isDark'] == 'true' ? 'body--contrast' : '';
+	$dark_mode = isset($_COOKIE['isDark']) && $_COOKIE['isDark'] == 'true' ? 'body--contrast' : '';
 ?>
 <!doctype html>
 <html class="no-js" <?php language_attributes(); ?> >
@@ -22,11 +20,10 @@
 		<meta name="keywords" content="vefsíður, vefir, vefsvæði, vefgeirinn, vefiðnaður, ICEWEB, Íslensku vefverðlaunin, vefverðlaun, veflausnir, vefsíðugerð, vefarar, vefsmiðir, vefforritari, vefforritarar">
 
 		<?php wp_head(); ?>
-
+    
 		<?php
 			$analytics_gtag_code = get_field('analytics_gtag_code', 'option');
 		?>
-		<!-- Global site tag gtag.js - Google Analytics -->
 		<?php if($analytics_gtag_code) : ?>
 			<?php echo $analytics_gtag_code; ?>
         <?php endif; ?>
