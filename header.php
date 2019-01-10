@@ -22,16 +22,14 @@
 		<meta name="keywords" content="vefsíður, vefir, vefsvæði, vefgeirinn, vefiðnaður, ICEWEB, Íslensku vefverðlaunin, vefverðlaun, veflausnir, vefsíðugerð, vefarar, vefsmiðir, vefforritari, vefforritarar">
 
 		<?php wp_head(); ?>
-		
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131131160-1"></script>
-		<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
 
-		gtag('config', 'UA-131131160-1');
-		</script>
+		<?php
+			$analytics_gtag_code = get_field('analytics_gtag_code', 'option');
+		?>
+		<!-- Global site tag gtag.js - Google Analytics -->
+		<?php if($analytics_gtag_code) : ?>
+			<?php echo $analytics_gtag_code; ?>
+        <?php endif; ?>
 
 	</head>
 	<body <?php body_class($dark_mode); ?>>
