@@ -94,7 +94,7 @@ const Header = {
       this.btnMenu.classList.remove('nav__menu-button--clicked')
       this.menuOverlay.classList.remove('menu-overlay--active')
       this.body.style.overflow = 'auto'
-    }
+    } 
   },
   clickSiteContrast(e) {
     let ajaxObj = {}

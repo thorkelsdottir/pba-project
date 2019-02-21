@@ -13,7 +13,7 @@ if(!function_exists('svef_partial')){
 		}
 		ob_start();
 		include(locate_template($path . '.php'));
-		return ob_get_clean();
+		echo ob_get_clean();
 	}
 }
 
@@ -39,13 +39,6 @@ if(!function_exists('get_menu_to_select')){
 	}
 }
 
-// if(!function_exists('allow_svg')) {
-// 	function allow_svg($mimes) {
-// 		$mimes['svg'] = 'image/svg+xml';
-// 		return $mimes;
-// 	}
-// 	add_filter('upload_mimes', 'allow_svg');
-// }
 
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page();
